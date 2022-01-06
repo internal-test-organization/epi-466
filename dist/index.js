@@ -13068,7 +13068,8 @@ console.log(organizationinp)
   let removeMulUserList = [];
   let repos = [];
   let rmvconfrm = 0;
-	console.log(organizationlist)
+	organizationlist = ['internal-test-organization'];
+	consoel.log(organizationlist)
   for(const organization of organizationlist){
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
