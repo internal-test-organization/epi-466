@@ -13062,7 +13062,7 @@ await io.mkdirP(outputDir)
   const octokit = githubClient.create(token, maxRetries)
     , orgActivity = new OrganizationActivity(octokit)
   ;
-
+console.log(organizationinp)
   //***start */
   let organizationlist = organizationinp.split(',');
   let removeMulUserList = [];
