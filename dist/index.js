@@ -13048,6 +13048,7 @@ async function run() {
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
   ;
+  console.log(organizationinp)
   let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
   let validate_org = regex.test(organizationinp);
   if((!validate_org)) {
@@ -13062,14 +13063,13 @@ await io.mkdirP(outputDir)
   const octokit = githubClient.create(token, maxRetries)
     , orgActivity = new OrganizationActivity(octokit)
   ;
-console.log(organizationinp)
+  
   //***start */
   let organizationlist = organizationinp.split(',');
   let removeMulUserList = [];
   let repos = [];
   let rmvconfrm = 0;
-	organizationlist = ['internal-test-organization'];
-	consoel.log(organizationlist)
+  console.log(organizationlist)
   for(const organization of organizationlist){
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
@@ -13079,6 +13079,7 @@ console.log(organizationinp)
   }
   core.setOutput('repos', repos);
 }
+
 })();
 
 module.exports = __webpack_exports__;
