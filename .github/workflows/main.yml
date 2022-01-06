@@ -9,6 +9,7 @@ on:
       action_branch:
         description: The branch of the action to use
         default: main
+
       organization:
         description: The organization to process
         default: internal-test-organization
@@ -31,6 +32,7 @@ jobs:
         with:
           token: ${{ secrets.OCTODEMO_TEMP_TOKEN }}
           organization: ${{ github.event.inputs.organization }}
+          
       - name: Results
         run: |
           echo "repos - ${{ steps.analyze_org.outputs.repos }}"
