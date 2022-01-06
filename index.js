@@ -37,7 +37,7 @@ await io.mkdirP(outputDir)
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
     if(orgsComments.status !== 'error') {
-        const repos = await orgActivity.listForOrg(organization);
+         repos = await orgActivity.listForOrg(organization);
     }
   }
   core.setOutput('repos', repos);
