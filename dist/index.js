@@ -13009,7 +13009,7 @@ module.exports = class Organization {
         console.log(`Processing ${secret.length} secrets`);
         return secret.map(repo => { return {
           name: secret.name,
-          url: selected_repositories_url,
+          url: secret.selected_repositories_url,
         }});
       })
     }
