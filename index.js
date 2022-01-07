@@ -5,7 +5,7 @@ const fs = require('fs')
   , json2csv = require('json2csv')
   , github = require('@actions/github')
   , githubClient = require('./src/githublib/githubClient')
-  , OrgActivity = require('./src/githublib/Organization')
+  , OrganizationActivity = require('./src/githublib/Organization')
 ;
 
 async function run() {
