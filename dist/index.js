@@ -13255,7 +13255,7 @@ const fs = __nccwpck_require__(7147)
   , json2csv = __nccwpck_require__(5192)
   , github = __nccwpck_require__(9947)
   , githubClient = __nccwpck_require__(77)
-  , OrgsssActivity = __nccwpck_require__(6901)
+  , OrgActivity = __nccwpck_require__(6901)
 ;
 
 async function run() {
