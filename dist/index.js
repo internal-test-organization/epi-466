@@ -13341,6 +13341,7 @@ for(const organization of organizationlist){
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
        OvSecret = secrets.name;
+       console.log(OvSecret)
       for(const secret of OvSecret){
          repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
       }  
