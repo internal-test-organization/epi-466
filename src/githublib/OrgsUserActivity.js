@@ -1,4 +1,4 @@
-const Organization = require('./githublib/Organization');
+const Organization = require('./src/githublib/Organization');
 
 module.exports = class OrganizationUserActivity {
     async getOrgsValid (org) {

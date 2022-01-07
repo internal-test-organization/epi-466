@@ -12953,7 +12953,7 @@ function wrappy (fn, cb) {
 /***/ 5050:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const Organization = __nccwpck_require__(5429);
+const Organization = __nccwpck_require__(7312);
 
 module.exports = class OrganizationUserActivity {
     async getOrgsValid (org) {
@@ -13014,10 +13014,10 @@ module.exports.create = (token, maxRetries) => {
 
 /***/ }),
 
-/***/ 5429:
+/***/ 7312:
 /***/ ((module) => {
 
-module.exports = eval("require")("./githublib/Organization");
+module.exports = eval("require")("./src/githublib/Organization");
 
 
 /***/ }),
