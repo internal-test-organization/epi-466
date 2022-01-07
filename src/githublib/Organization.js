@@ -27,8 +27,8 @@ module.exports = class Organization {
       .then(secrets => {
         console.log(`Processing ${secrets.length} secrets`);
         return secrets.map(secret => { return {
-          name: secret.secrets.name,
-          url: secret.secrets.selected_repositories_url,
+          name: secret.name,
+          url: secret.selected_repositories_url,
         }});
       })
     }
