@@ -12959,9 +12959,12 @@ module.exports = class OrganizationActivity {
 
   constructor(octokit) {
     this._organization = new Organization(octokit);
-    this._repositoryActivity = new RepositoryActivity(octokit);
-    this._removeUser = new RemoveUser(octokit);
   }
+
+  get organizationClient() {
+    return this._organization;
+  }
+  
     async getOrgsValid (org) {
         const self = this;
         const orgsValid = await self.organizationClient.getOrgs(org);
