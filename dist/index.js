@@ -13004,7 +13004,7 @@ module.exports = class Organization {
     }
     
     getOrgSecrets(org) {
-      return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: 'org'})
+      return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: org, per_page: 100})
       .then(secret => {
         console.log(`Processing ${secret.length} secrets`);
         return secret.map(repo => { return {
