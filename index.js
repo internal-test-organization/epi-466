@@ -34,7 +34,7 @@ const octokit = githubClient.create(token, maxRetries)
 
 //***start */
 let organizationlist = organizationinp.split(',');
-//let secrets = [];
+let OvSecret = [];
 let repos = [];
 let rmvconfrm = 0;
 console.log(organizationlist)
