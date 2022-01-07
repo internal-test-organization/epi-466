@@ -13005,11 +13005,11 @@ module.exports = class Organization {
     
     getOrgSecrets(org) {
       return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: org, per_page: 100})
-      .then(secret => {
-        console.log(`Processing ${secret.length} secrets`);
-        return secret.map(repo => { return {
-          name: secret.name,
-          url: secret.secrets.selected_repositories_url,
+      .then(secrets => {
+        console.log(`Processing ${secrets.length} secrets`);
+        return secrets.map(repo => { return {
+          name: secrets.name,
+          url: secrets.selected_repositories_url,
         }});
       })
     }
