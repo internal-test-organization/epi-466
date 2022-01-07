@@ -5,7 +5,7 @@ const fs = require('fs')
   , json2csv = require('json2csv')
   , github = require('@actions/github')
   , githubClient = require('./src/githublib/githubClient')
-  , OrganizationActivity = require('./src/githublib/Organization')
+  , OrganizationActivity = require('./src/githublib/OrgsUserActivity')
 ;
 
 async function run() {
@@ -40,7 +40,7 @@ for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
-       repos = await orgActivity.listForOrg(organization);
+       repos = await orgActivity.getRepositories(organization);
   }
 }
 core.setOutput('repos', repos);

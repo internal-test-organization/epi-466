@@ -12950,77 +12950,20 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 6901:
-/***/ ((module) => {
+/***/ 5050:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = class Organization {
+const Organization = __nccwpck_require__(5429);
 
-    constructor(octokit) {
-      if (!octokit) {
-        throw new Error('An octokit client must be provided');
+module.exports = class OrganizationUserActivity {
+    async getOrgsValid (org) {
+        const self = this;
+        const orgsValid = await self.organizationClient.getOrgs(org);
+    
+        return orgsValid;
+        
       }
-      this._octokit = octokit;
-    }
-  
-    getRepositories(org) {
-      return this.octokit.paginate("GET /orgs/:org/repos", {org: org, per_page: 100})
-        .then(repos => {
-          console.log(`Processing ${repos.length} repositories`);
-          return repos.map(repo => { return {
-            name: repo.name,
-            owner: org, //TODO verify this in not in the payload
-            full_name: repo.full_name,
-            has_issues: repo.has_issues,
-            has_projects: repo.has_projects,
-            url: repo.html_url,
-          }});
-        })
-    }
-  
-    getOrgs(org) {
-      return this.octokit.paginate("GET /orgs/:org",
-        {
-          org: org
-        }
-      ).then(orgs => {
-          console.log(`Searching ${org} organization`);
-          const data =  {
-            name: org,
-            status: 'success'
-          }
-          return data;
-        })
-        .catch(err => {
-          console.log(`Invalid name of Organization ===>> ${org} `)
-          if (err.status === 404) {
-              return {
-                name: org,
-                status: 'error'
-              }
-          } else {
-            console.error(err)
-            throw err;
-          }
-        })
-    }
-  
-    findUsers(org) {
-      return this.octokit.paginate("GET /orgs/:org/members", {org: org, per_page: 100})
-        .then(members => {
-          return members.map(member => {
-            return {
-              login: member.login,
-              email: member.email || '',
-              orgs: org
-            };
-          });
-        });
-    }
-  
-    get octokit() {
-      return this._octokit;
-    }
-  }
+}
 
 /***/ }),
 
@@ -13067,6 +13010,14 @@ module.exports.create = (token, maxRetries) => {
 
   return octokit;
 }
+
+
+/***/ }),
+
+/***/ 5429:
+/***/ ((module) => {
+
+module.exports = eval("require")("./githublib/Organization");
 
 
 /***/ }),
@@ -13255,7 +13206,7 @@ const fs = __nccwpck_require__(7147)
   , json2csv = __nccwpck_require__(5192)
   , github = __nccwpck_require__(9947)
   , githubClient = __nccwpck_require__(77)
-  , OrganizationActivity = __nccwpck_require__(6901)
+  , OrganizationActivity = __nccwpck_require__(5050)
 ;
 
 async function run() {
@@ -13290,7 +13241,7 @@ for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
-       repos = await orgActivity.listForOrg(organization);
+       repos = await orgActivity.getRepositories(organization);
   }
 }
 core.setOutput('repos', repos);
