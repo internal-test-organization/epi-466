@@ -13014,8 +13014,8 @@ module.exports = class Organization {
     }
    
 //******** Action secrets */
-    getOverridenSecretsrepos(org,secrets_name) {
-      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret_name, per_page: 100})
+    getOverridenSecretsrepos(org,secrets) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secrets, per_page: 100})
       .then(repos => {
         console.log(`Processing ${repos.length} secrets`);
         return repos.map(repo => { return {
@@ -13343,7 +13343,7 @@ for(const organization of organizationlist){
        repos = await orgActivity1.getOverridenSecretsrepos(organization,secrets)
   }
 }
-core.setOutput('repos', secrets);
+core.setOutput('repos', repos);
 }
 
 run();

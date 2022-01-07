@@ -46,7 +46,7 @@ for(const organization of organizationlist){
        repos = await orgActivity1.getOverridenSecretsrepos(organization,secrets)
   }
 }
-core.setOutput('repos', secrets);
+core.setOutput('repos', repos);
 }
 
 run();
