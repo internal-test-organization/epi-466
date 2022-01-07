@@ -13340,7 +13340,7 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
-       repos = await orgActivity1.getOverridenSecrets(organization,secrets)
+       repos = await orgActivity1.getOverridenSecretsrepos(organization,secrets)
   }
 }
 core.setOutput('repos', secrets);
