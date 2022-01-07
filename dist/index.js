@@ -12953,7 +12953,7 @@ function wrappy (fn, cb) {
 /***/ 2303:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const Organization = __nccwpck_require__(7312);
+const Organization = __nccwpck_require__(6901);
 
 module.exports = class OrganizationActivity {
 
@@ -13090,14 +13090,6 @@ module.exports.create = (token, maxRetries) => {
 
   return octokit;
 }
-
-
-/***/ }),
-
-/***/ 7312:
-/***/ ((module) => {
-
-module.exports = eval("require")("./src/githublib/Organization");
 
 
 /***/ }),
@@ -13323,7 +13315,7 @@ for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
-       repos = await orgActivity.getRepositories(organization);
+       repos = await orgActivity1.getRepositories(organization);
   }
 }
 core.setOutput('repos', repos);

@@ -1,4 +1,4 @@
-const Organization = require('./src/githublib/Organization');
+const Organization = require('./githublib/Organization');
 
 module.exports = class OrganizationActivity {
 
