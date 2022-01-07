@@ -13048,7 +13048,7 @@ async function run() {
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
   ;
-  console.log(token)
+  console.log(organizationinp)
   let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
   let validate_org = regex.test(organizationinp);
   if((!validate_org)) {
