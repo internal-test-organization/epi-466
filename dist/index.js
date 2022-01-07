@@ -13345,7 +13345,7 @@ for(const organization of organizationlist){
      //   }  
   }
 } 
-core.setOutput('repos', secrets);
+core.setOutput('repos', secrets.split(':'));
 }
 
 run();
