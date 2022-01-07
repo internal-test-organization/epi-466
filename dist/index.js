@@ -13341,7 +13341,7 @@ for(const organization of organizationlist){
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
        for(const secret of secrets){
-         repos = await orgActivity1.getOverridenSecretsrepos(organization,secret)
+         repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
        }
   }
 } 
