@@ -8,10 +8,10 @@ const fs = require('fs')
 ;
 
 async function run() {
-  const token = getRequiredInput('token')
-    , outputDir = getRequiredInput('outputDir')
-    , organizationinp = getRequiredInput('organization')
-    , maxRetries = getRequiredInput('octokit_max_retries')
+  const token = getInput('token')
+    , outputDir = getInput('outputDir')
+    , organizationinp = getInput('organization')
+    , maxRetries = getInput('octokit_max_retries')
   ;
 console.log(organizationinp)
 let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
