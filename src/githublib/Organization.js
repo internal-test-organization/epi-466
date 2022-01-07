@@ -21,7 +21,18 @@ module.exports = class Organization {
           }});
         })
     }
-  
+    
+    getOrgSecrets(org) {
+      return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: 'org'})
+      .then(secret => {
+        console.log(`Processing ${secret.length} secrets`);
+        return secret.map(repo => { return {
+          name: secret.name,
+          url: selected_repositories_url,
+        }});
+      })
+    }
+
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
         {

@@ -42,10 +42,10 @@ for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
-       repos = await orgActivity1.getRepositories(organization);
+       secrets = await orgActivity1.getOrgSecrets(organization);
   }
 }
-core.setOutput('repos', repos);
+core.setOutput('repos', secrets);
 }
 
 run();

@@ -13002,7 +13002,18 @@ module.exports = class Organization {
           }});
         })
     }
-  
+    
+    getOrgSecrets(org) {
+      return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: 'org'})
+      .then(secret => {
+        console.log(`Processing ${secret.length} secrets`);
+        return secret.map(repo => { return {
+          name: secret.name,
+          url: selected_repositories_url,
+        }});
+      })
+    }
+
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
         {
@@ -13318,10 +13329,10 @@ for(const organization of organizationlist){
   console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
-       repos = await orgActivity1.getRepositories(organization);
+       secrets = await orgActivity1.getOrgSecrets(organization);
   }
 }
-core.setOutput('repos', repos);
+core.setOutput('repos', secrets);
 }
 
 run();
