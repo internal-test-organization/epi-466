@@ -13014,8 +13014,8 @@ module.exports = class Organization {
     }
    
 //******** Action secrets */
-    getOverridenSecretsrepos(org,secrets) {
-      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secrets, per_page: 100})
+    getOverridenSecretsrepos(org,secret) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret, per_page: 100})
       .then(repos => {
         console.log(`Processing ${repos.length} repos`);
         return repos.map(repo => { return {
@@ -13331,7 +13331,7 @@ const octokit = githubClient.create(token, maxRetries)
 
 //***start */
 let organizationlist = organizationinp.split(',');
-let removeMulUserList = [];
+let secrets = [];
 let repos = [];
 let rmvconfrm = 0;
 console.log(organizationlist)
@@ -13340,7 +13340,9 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
-       repos = await orgActivity1.getOverridenSecretsrepos(organization,secrets)
+       for(const secret of secrets){
+         repos = await orgActivity1.getOverridenSecretsrepos(organization,secret)
+       }
   }
 }
 core.setOutput('repos', repos);
