@@ -34,7 +34,7 @@ const octokit = githubClient.create(token, maxRetries)
 
 //***start */
 let organizationlist = organizationinp.split(',');
-let OvSecret = [];
+//let OvSecret = [];
 let repos = [];
 let rmvconfrm = 0;
 console.log(organizationlist)
@@ -43,14 +43,14 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
-       OvSecret = secrets.name;
-       console.log(OvSecret)
-      for(const secret of OvSecret){
-         repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
-      }  
+       
+       console.log(secrets)
+      //for(const secret of OvSecret){
+      //   repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
+      //}  
   }
 } 
-core.setOutput('repos', repos);
+core.setOutput('repos', secrets);
 }
 
 run();
