@@ -36,7 +36,7 @@ module.exports = class Organization {
     getOverridenSecretsrepos(org,secrets) {
       return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secrets, per_page: 100})
       .then(repos => {
-        console.log(`Processing ${repos.length} secrets`);
+        console.log(`Processing ${repos.length} repos`);
         return repos.map(repo => { return {
           name: repo.name,
         }});
