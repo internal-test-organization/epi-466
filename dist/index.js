@@ -13080,6 +13080,7 @@ for(const organization of organizationlist){
 core.setOutput('repos', repos);
 }
 
+run();
 })();
 
 module.exports = __webpack_exports__;

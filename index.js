@@ -44,3 +44,5 @@ for(const organization of organizationlist){
 }
 core.setOutput('repos', repos);
 }
+
+run();
