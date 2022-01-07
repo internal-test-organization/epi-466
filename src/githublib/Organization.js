@@ -26,9 +26,9 @@ module.exports = class Organization {
       return this.octokit.paginate("GET /orgs/:org/actions/secrets", {org: org, per_page: 100})
       .then(secrets => {
         console.log(`Processing ${secrets.length} secrets`);
-        return secrets.map(repo => { return {
-          name: secrets.name,
-          url: secrets.selected_repositories_url,
+        return secrets.map(secret => { return {
+          name: secret.secrets.name,
+          url: secret.secrets.selected_repositories_url,
         }});
       })
     }
