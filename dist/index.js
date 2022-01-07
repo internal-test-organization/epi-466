@@ -13009,11 +13009,21 @@ module.exports = class Organization {
         console.log(`Processing ${secrets.length} secrets`);
         return secrets.map(secret => { return {
           name: secret.name,
-          url: secret.selected_repositories_url,
         }});
       })
     }
-
+   
+//******** Action secrets */
+    getOverridenSecretsrepos(org,secrets_name) {
+      return this.octokit.paginate('GET /orgs/{org}/actions/secrets/{secret_name}/repositories', {org: org, secret_name: secret_name, per_page: 100})
+      .then(repos => {
+        console.log(`Processing ${repos.length} secrets`);
+        return repos.map(repo => { return {
+          name: repo.name,
+        }});
+      })
+    }
+    
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
         {
@@ -13330,6 +13340,7 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
+       repos = await orgActivity1.getOverridenSecrets(organization,secrets)
   }
 }
 core.setOutput('repos', secrets);
