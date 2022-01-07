@@ -3,15 +3,16 @@ const fs = require('fs')
   , core = require('@actions/core')
   , io = require('@actions/io')
   , json2csv = require('json2csv')
+  , github = require('@actions/github')
   , githubClient = require('./src/githublib/githubClient')
   , OrgsssActivity = require('./src/githublib/Organization')
 ;
 
 async function run() {
-  const token = getInput('token')
-    , outputDir = getInput('outputDir')
-    , organizationinp = getInput('organization')
-    , maxRetries = getInput('octokit_max_retries')
+  const token = core.getInput('token')
+    , outputDir = core.getInput('outputDir')
+    , organizationinp = core.getInput('organization')
+    , maxRetries = core.getInput('octokit_max_retries')
   ;
 console.log(organizationinp)
 let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
