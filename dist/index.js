@@ -13048,7 +13048,7 @@ async function run() {
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
   ;
-  console.log(organizationinp)
+console.log(organizationinp)
 
 }
 
