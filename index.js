@@ -5,7 +5,8 @@ const fs = require('fs')
   , json2csv = require('json2csv')
   , github = require('@actions/github')
   , githubClient = require('./src/githublib/githubClient')
-  , OrganizationActivity = require('./src/githublib/OrgsUserActivity')
+  , OrganizationActivity = require('./src/OrgsUserActivity')
+  , Organization = require('./src/githublib/Organization')
 ;
 
 async function run() {
@@ -28,6 +29,7 @@ await io.mkdirP(outputDir)
 
 const octokit = githubClient.create(token, maxRetries)
   , orgActivity = new OrganizationActivity(octokit)
+  , orgActivity1 = new Organization(octokit)
 ;
 
 //***start */
