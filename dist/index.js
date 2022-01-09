@@ -13342,8 +13342,9 @@ for(const organization of organizationlist){
        secrets = await orgActivity1.getOrgSecrets(organization);
        console.log(secrets)
        data = JSON.stringify(secrets);
-       console.log(data)
-       console.log(data.value)
+       secret = Object.keys(secrets).map(function (key) { return data[key]; });
+       console.log(secret)
+       
       //for(const secret of OvSecret){
       //   repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
       //}  
