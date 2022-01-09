@@ -43,6 +43,7 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
+       secrets = `$secrets`
        secrets = secrets.slice(1,-1);
        console.log(secrets)
       //for(const secret of OvSecret){
