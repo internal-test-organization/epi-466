@@ -45,6 +45,9 @@ for(const organization of organizationlist){
        secrets = await orgActivity1.getOrgSecrets(organization);
        console.log(secrets)
        data = JSON.stringify(secrets);
+       data1 = data.slice(1,-1);
+       console.log(data)
+       console.log(data1.value)
        secret = Object.keys(secrets).map(function (key) { return data[key]; });
        console.log(secret)
        
