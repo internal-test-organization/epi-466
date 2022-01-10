@@ -13342,10 +13342,9 @@ for(const organization of organizationlist){
        secrets = await orgActivity1.getOrgSecrets(organization);
        console.log(secrets);
        console.log(secrets[0].name);
-       data = JSON.stringify(secrets);
-       data1 = data.slice(1,-1);
-       console.log(data)
-       console.log(data1.name)
+       secrets.map(({name}) => {
+          console.log(name)
+       })
        
        console.log(secrets)
        
