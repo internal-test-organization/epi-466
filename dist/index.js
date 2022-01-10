@@ -13331,7 +13331,7 @@ const octokit = githubClient.create(token, maxRetries)
 
 //***start */
 let organizationlist = organizationinp.split(',');
-//let OvSecret = [];
+let OvSecret = [];
 let repos = [];
 let rmvconfrm = 0;
 console.log(organizationlist)
@@ -13344,16 +13344,15 @@ for(const organization of organizationlist){
        console.log(secrets[0].name);
        secrets.map(({name}) => {
           console.log(name)
+          OvSecret.push(name);
        })
        
-       console.log(secrets)
-       
-      //for(const secret of OvSecret){
-      //   repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
-      //}  
+      for(const secret of OvSecret){
+         repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
+      }  
   }
 } 
-core.setOutput('repos', data.value);
+core.setOutput('repos', repos);
 }
 
 run();
