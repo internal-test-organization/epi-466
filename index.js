@@ -47,8 +47,8 @@ for(const organization of organizationlist){
        data = JSON.stringify(secrets);
        data1 = data.slice(1,-1);
        console.log(data)
-       console.log(data1.value)
-       secret = Object.keys(secrets).map(function (key) { return data[key]; });
+       console.log(data1.name)
+       
        console.log(secret)
        
       //for(const secret of OvSecret){
