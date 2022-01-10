@@ -38,3 +38,10 @@ jobs:
           echo "repos - ${{ steps.analyze_org.outputs.repos }}"
           echo "secret - ${{ steps.analyze_org.outputs.secret }}"
           echo "report - ${{ steps.analyze_org.outputs.report }}"
+      - name: Attach Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: |
+            ${{ steps.analyze_org.outputs.report_json }}
+

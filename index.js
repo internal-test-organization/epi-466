@@ -32,6 +32,8 @@ const octokit = githubClient.create(token, maxRetries)
   , orgActivity1 = new Organization(octokit)
 ;
 
+
+
 //***start */
 let organizationlist = organizationinp.split(',');
 let OvSecret = [];
@@ -61,6 +63,19 @@ for(const organization of organizationlist){
       } 
   }
 } 
+saveIntermediateData(outputDir, newrepo);
+
+
+function saveIntermediateData(directory, data) {
+  try {
+    const file = path.join(directory, 'org-overriden-secret.json');
+    fs.writeFileSync(file, JSON.stringify(data));
+    core.setOutput('report_json', file);
+  } catch (err) {
+    console.error(`Failed to save intermediate data: ${err}`);
+  }
+}
+
 core.setOutput('repos', repos);
 core.setOutput('secret',secrets);
 core.setOutput('report',newrepo);
