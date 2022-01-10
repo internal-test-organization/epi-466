@@ -36,7 +36,7 @@ const octokit = githubClient.create(token, maxRetries)
 let organizationlist = organizationinp.split(',');
 let OvSecret = [];
 let repos = [];
-let secretlist = [];
+
 let newrepo = [];
 
 console.log(organizationlist)
@@ -51,10 +51,10 @@ for(const organization of organizationlist){
           console.log(name)
           OvSecret.push(name);
        })
-       
+      let secretlist = [];
       for(const secret of OvSecret){
          repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
-         secretlist.push(secretlist)
+         secretlist.push(secret)
       }
       for(const repo of repos){
          newrepo.push({org:organization,name:repo.name,message:"org secrets overriden","orgs-secrets-overriden":secretlist})
