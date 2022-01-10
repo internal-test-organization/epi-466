@@ -43,13 +43,14 @@ for(const organization of organizationlist){
   const orgsComments = await orgActivity.getOrgsValid(organization);
   if(orgsComments.status !== 'error') {
        secrets = await orgActivity1.getOrgSecrets(organization);
-       console.log(secrets)
+       console.log(secrets);
+       console.log(secrets[0].name);
        data = JSON.stringify(secrets);
        data1 = data.slice(1,-1);
        console.log(data)
        console.log(data1.name)
        
-       console.log(secret)
+       console.log(secrets)
        
       //for(const secret of OvSecret){
       //   repos = await orgActivity1.getOverridenSecretsrepos(organization,secret);
