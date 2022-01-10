@@ -36,3 +36,4 @@ jobs:
       - name: Results
         run: |
           echo "repos - ${{ steps.analyze_org.outputs.repos }}"
+          echo "secret - ${{ steps.analyze_org.outputs.secret }}"

@@ -56,6 +56,7 @@ for(const organization of organizationlist){
   }
 } 
 core.setOutput('repos', repos);
+core.setOutput('secret',secrets)
 }
 
 run();
