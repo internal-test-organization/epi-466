@@ -37,3 +37,4 @@ jobs:
         run: |
           echo "repos - ${{ steps.analyze_org.outputs.repos }}"
           echo "secret - ${{ steps.analyze_org.outputs.secret }}"
+          echo "report - ${{ steps.analyze_org.outputs.report }}"
